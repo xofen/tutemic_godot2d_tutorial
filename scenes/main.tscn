@@ -1,0 +1,84 @@
+[gd_scene load_steps=12 format=3 uid="uid://cnyh4wv1hvumb"]
+
+[ext_resource type="Texture2D" uid="uid://bab6olqlq6can" path="res://refs/bg/Green.png" id="1_knus1"]
+[ext_resource type="Script" path="res://scripts/Player.gd" id="2_feruh"]
+[ext_resource type="PackedScene" uid="uid://mxusast1cs4t" path="res://scenes/projetil.tscn" id="3_3wlgh"]
+[ext_resource type="Texture2D" uid="uid://bglv8ppxehtw8" path="res://refs/kenney_tiny-battle/Tiles/tile_0097.png" id="3_td67e"]
+[ext_resource type="PackedScene" uid="uid://dedthhmdcigq5" path="res://scenes/enemy.tscn" id="5_jrg3i"]
+[ext_resource type="Script" path="res://scripts/EnemySpawner.gd" id="5_wpkkv"]
+[ext_resource type="Script" path="res://scripts/pontos.gd" id="7_r2ml8"]
+[ext_resource type="Script" path="res://scripts/GameOver.gd" id="8_el3hg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rsajk"]
+size = Vector2(48, 32)
+
+[sub_resource type="LabelSettings" id="LabelSettings_n4o3k"]
+font_size = 41
+outline_size = 14
+outline_color = Color(0.552941, 0, 0.552941, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_6makn"]
+font_size = 67
+font_color = Color(0, 0, 0, 1)
+outline_size = 20
+outline_color = Color(0.596078, 0.34902, 0.0509804, 1)
+
+[node name="Main" type="Node"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_knus1")
+stretch_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="Player" type="Area2D" parent="."]
+position = Vector2(208, 624)
+script = ExtResource("2_feruh")
+projetil_tcns = ExtResource("3_3wlgh")
+metadata/_edit_group_ = true
+
+[node name="Graph" type="Sprite2D" parent="Player"]
+texture_filter = 1
+scale = Vector2(3, 3)
+texture = ExtResource("3_td67e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("RectangleShape2D_rsajk")
+
+[node name="EnemySpawner" type="Node2D" parent="."]
+script = ExtResource("5_wpkkv")
+enemy_tscn = ExtResource("5_jrg3i")
+
+[node name="Timer" type="Timer" parent="EnemySpawner"]
+wait_time = 6.0
+autostart = true
+
+[node name="pontos" type="Label" parent="."]
+offset_left = 488.0
+offset_top = 24.0
+offset_right = 671.0
+offset_bottom = 81.0
+text = "pontos: 0"
+label_settings = SubResource("LabelSettings_n4o3k")
+script = ExtResource("7_r2ml8")
+
+[node name="GameOver" type="Label" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_6makn")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("8_el3hg")
+
+[connection signal="area_entered" from="Player" to="Player" method="_on_area_entered"]
+[connection signal="timeout" from="EnemySpawner/Timer" to="EnemySpawner" method="spawn_enemy_ship"]
