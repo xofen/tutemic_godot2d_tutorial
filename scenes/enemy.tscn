@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dedthhmdcigq5"]
+[gd_scene load_steps=5 format=3 uid="uid://dedthhmdcigq5"]
 
 [ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_ias84"]
+[ext_resource type="PackedScene" uid="uid://dpbllubj7ulrx" path="res://scenes/projetil_inimigo.tscn" id="2_1qyig"]
 [ext_resource type="Texture2D" uid="uid://bjqxbjse6m53g" path="res://refs/kenney_tiny-battle/Tiles/tile_0154.png" id="2_huuir"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v6soa"]
@@ -9,6 +10,7 @@ size = Vector2(32, 16)
 [node name="Enemy" type="Area2D" groups=["enemy"]]
 position = Vector2(184, 96)
 script = ExtResource("1_ias84")
+projetil_inimigo_tcns = ExtResource("2_1qyig")
 metadata/_edit_group_ = true
 
 [node name="Graph" type="Sprite2D" parent="."]

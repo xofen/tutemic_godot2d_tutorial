@@ -36,7 +36,7 @@ texture = ExtResource("1_knus1")
 stretch_mode = 1
 metadata/_edit_lock_ = true
 
-[node name="Player" type="Area2D" parent="."]
+[node name="Player" type="Area2D" parent="." groups=["player"]]
 position = Vector2(208, 624)
 script = ExtResource("2_feruh")
 projetil_tcns = ExtResource("3_3wlgh")

@@ -1,23 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://mxusast1cs4t"]
+[gd_scene load_steps=4 format=3 uid="uid://dpbllubj7ulrx"]
 
-[ext_resource type="Script" path="res://scripts/Projetil.gd" id="1_or1er"]
-[ext_resource type="Texture2D" uid="uid://dgoi6c5pprsid" path="res://refs/kenney_tiny-battle/Tiles/tile_0040.png" id="2_v0yg5"]
+[ext_resource type="Script" path="res://scripts/projetil_inimigo.gd" id="1_8gqca"]
+[ext_resource type="Texture2D" uid="uid://fpxaf0fldd8x" path="res://refs/kenney_tiny-battle/Tiles/tile_0076.png" id="2_ksy7s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oj5y8"]
 size = Vector2(16, 24)
 
-[node name="Projetil" type="Area2D" groups=["player"]]
+[node name="Projetil" type="Area2D" groups=["enemy"]]
 position = Vector2(232, 544)
-script = ExtResource("1_or1er")
+script = ExtResource("1_8gqca")
 metadata/_edit_group_ = true
 
 [node name="Graph" type="Sprite2D" parent="."]
 texture_filter = 1
 scale = Vector2(2, 2)
-texture = ExtResource("2_v0yg5")
+texture = ExtResource("2_ksy7s")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 4)
+position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_oj5y8")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
